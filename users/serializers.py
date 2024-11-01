@@ -6,7 +6,7 @@ from users.models import User
 
 class UserSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    username = serializers.CharField(max_length=40, required=True)  # Alterado para "username"
+    username = serializers.CharField(max_length=40, required=True)
     email = serializers.EmailField(max_length=255, required=True)
     password = serializers.CharField(max_length=255, write_only=True)
     accounts = AccountSerializer(many=True, read_only=True)
@@ -31,7 +31,7 @@ class UserSerializer(serializers.Serializer):
         print(validated_data)
         user = User(**validated_data)  
         print(user)
-        user.set_password(validated_data['password'])  # Assegure-se de hashear a senha  
+        user.set_password(validated_data['password']) 
         user.save()  
         print(user)
         Account.objects.create(user=user, balance=0.00)  

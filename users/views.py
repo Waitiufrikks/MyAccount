@@ -8,6 +8,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .permissions import CustomPermission
 
 class UserView(APIView):
+    permission_classes = []
     def post(self, request):  
         serializer = UserSerializer(data=request.data)  
         if not serializer.is_valid():  
@@ -23,6 +24,7 @@ class UserView(APIView):
 
 class UserDetailView(APIView):
     authentication_classes = [JWTAuthentication]
+    permission_classes = [CustomPermission]
 
     
     def get(self, request, user_id):
