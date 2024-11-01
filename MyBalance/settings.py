@@ -53,16 +53,11 @@ MIDDLEWARE = [
         'django.contrib.sessions.middleware.SessionMiddleware',  
     'django.contrib.auth.middleware.AuthenticationMiddleware',  
 ]
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        # Outras classes de autenticação se necessário
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Para exigir que o usuário esteja autenticado
-    ],
-}
+REST_FRAMEWORK = {  
+    'DEFAULT_AUTHENTICATION_CLASSES': (  
+        'rest_framework_simplejwt.authentication.JWTAuthentication',  
+    ),  
+}  
 ROOT_URLCONF = 'MyBalance.urls'
 
 TEMPLATES = [
